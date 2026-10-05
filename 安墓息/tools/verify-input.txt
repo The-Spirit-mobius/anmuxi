@@ -1,0 +1,15 @@
+var tree = Engine.get_main_loop() as SceneTree
+var scene = tree.current_scene
+executeContext.output("keyboard_dug_tile", str(scene.model.tile(Vector2i(5, 1)) == "."))
+executeContext.output("soil_inventory", str(scene.model.soil))
+var play = InputEventKey.new()
+play.physical_keycode = KEY_SPACE
+play.keycode = KEY_SPACE
+play.pressed = true
+Input.parse_input_event(play)
+var release = InputEventKey.new()
+release.physical_keycode = KEY_SPACE
+release.keycode = KEY_SPACE
+release.pressed = false
+Input.parse_input_event(release)
+executeContext.output("play_queued", "true")

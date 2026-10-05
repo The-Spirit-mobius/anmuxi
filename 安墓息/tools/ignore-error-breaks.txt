@@ -1,0 +1,18 @@
+var ei = executeContext.editor_plugin.get_editor_interface()
+var stack = [[ei.get_base_control(), 0]]
+var enabled = false
+while not stack.is_empty():
+	var pair = stack.pop_back()
+	var node = pair[0]
+	if pair[1] > 25:
+		continue
+	if node is Button and (node.tooltip_text.contains("Ignore Error Breaks") or node.tooltip_text.contains("忽略错误")):
+		if not node.button_pressed:
+			node.set_toggle_mode(true)
+			node.set_pressed(true)
+			node.emit_signal("pressed")
+		enabled = true
+		break
+	for child in node.get_children():
+		stack.append([child, pair[1] + 1])
+executeContext.output("ignore_error_breaks", "enabled" if enabled else "button_not_found")

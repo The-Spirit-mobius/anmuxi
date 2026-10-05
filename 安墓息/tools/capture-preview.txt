@@ -1,0 +1,7 @@
+var tree = Engine.get_main_loop() as SceneTree
+var scene = tree.current_scene
+var path = ProjectSettings.globalize_path("res://试玩预览.png")
+var screenshot = scene.get_viewport().get_texture().get_image()
+var error = screenshot.save_png(path)
+executeContext.output("screenshot_save", str(error))
+executeContext.output("path", path)

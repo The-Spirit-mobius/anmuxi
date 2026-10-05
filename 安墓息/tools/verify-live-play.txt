@@ -1,0 +1,7 @@
+var tree = Engine.get_main_loop() as SceneTree
+var scene = tree.current_scene
+executeContext.output("gameplay_running_or_won", str(not scene.paused or scene.model.won))
+executeContext.output("ghost_moves", str(scene.model.ghosts[0]["moves"]))
+executeContext.output("won", str(scene.model.won))
+scene.load_level(2)
+executeContext.output("loaded_two_ghosts", str(scene.model.ghosts.size() == 2))

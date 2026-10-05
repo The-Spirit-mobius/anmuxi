@@ -1,0 +1,8 @@
+var tree = Engine.get_main_loop() as SceneTree
+var scene = tree.current_scene
+executeContext.output("scene", str(scene.name))
+executeContext.output("level", str(scene.model.level_index + 1))
+executeContext.output("paused", str(scene.paused))
+executeContext.output("ghosts", str(scene.model.ghosts.size()))
+executeContext.output("viewport", str(scene.get_viewport_rect().size))
+executeContext.output("fps", str(Engine.get_frames_per_second()))

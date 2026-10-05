@@ -1,0 +1,16 @@
+var ei = executeContext.editor_plugin.get_editor_interface()
+ProjectSettings.set_setting("application/run/main_scene", "res://scenes/main.tscn")
+ProjectSettings.set_setting("display/window/size/viewport_width", 1280)
+ProjectSettings.set_setting("display/window/size/viewport_height", 820)
+ProjectSettings.set_setting("display/window/size/window_width_override", 1280)
+ProjectSettings.set_setting("display/window/size/window_height_override", 820)
+ProjectSettings.set_setting("display/window/stretch/mode", "canvas_items")
+ProjectSettings.set_setting("rendering/environment/defaults/default_clear_color", Color("10181e"))
+executeContext.editor_plugin.add_autoload_singleton("GameExecutor", "res://addons/hasturoperationgd/game_executor.gd")
+var error = ProjectSettings.save()
+executeContext.output("settings_save", str(error))
+if error == OK:
+	ei.get_resource_filesystem().scan()
+	ei.open_scene_from_path("res://scenes/main.tscn")
+else:
+	push_error("Cannot save prototype settings: " + str(error))

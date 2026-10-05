@@ -1,0 +1,14 @@
+var tree = Engine.get_main_loop() as SceneTree
+var scene = tree.current_scene
+scene.restart()
+var dig = InputEventKey.new()
+dig.physical_keycode = KEY_E
+dig.keycode = KEY_E
+dig.pressed = true
+Input.parse_input_event(dig)
+var release = InputEventKey.new()
+release.physical_keycode = KEY_E
+release.keycode = KEY_E
+release.pressed = false
+Input.parse_input_event(release)
+executeContext.output("keyboard_dig_queued", "true")
